@@ -25,6 +25,7 @@ collections:
         widget: "relation"
         valueField: title
         searchFields: ["title"]
+        displayFields: ["title"]
       - {label: "Category", name: "category", widget: "string"}
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Body", name: "body", widget: "markdown"}
