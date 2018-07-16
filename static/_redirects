@@ -1,1 +1,7 @@
 /              /admin
+
+# Redirect default Netlify subdomain to primary domain
+https://pedantic-galileo-ff4cd6.netlify.com/* https://test.thebignorth.com/:splat 301!
+
+# These extra rules are required because HTTPS is not forced
+http://pedantic-galileo-ff4cd6.netlify.com/* https://test.thebignorth.com/:splat 301!
