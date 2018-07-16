@@ -4,6 +4,7 @@
         <ul>
             <li v-if="posts" v-for="(post, index) in posts" :key="index">
                 <nuxt-link :to="post.slug">{{ post.title }}</nuxt-link>
+                {{ post.rel}}
             </li>
         </ul>
     </div>
@@ -21,3 +22,8 @@ export default {
     }
 }
 </script>
+
+<style>
+h2,
+li { margin-bottom: 20px; }
+</style>
