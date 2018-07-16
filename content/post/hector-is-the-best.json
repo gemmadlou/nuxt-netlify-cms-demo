@@ -1,5 +1,8 @@
 {
-  "category": "heccy",
   "title": "Hector is the best",
-  "body": "HEHEHEHE\n\nHEasjdfiasdfjasdjfjk\n\nasfasdasfsfdsfd"
+  "category": "heccy",
+  "rel": "Gemma's Category",
+  "body": "HEHEHEHE\n\nHEasjdfiasdfjasdjfjk\n\nasfasdasfsfdsfd",
+  "rel_category": "Test category",
+  "test_gb": "Fire"
 }
