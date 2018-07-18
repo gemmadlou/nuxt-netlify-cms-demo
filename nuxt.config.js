@@ -1,4 +1,6 @@
-var requireContext = require('require-context');
+const requireContext = require('require-context');
+const {getDataBy} = require('./utils/utils');
+const path = require('path');
 require('dotenv').config();
 
 module.exports = {
@@ -49,21 +51,34 @@ module.exports = {
                     exclude: /.nuxt/
                 });
             }
+            //config.target = 'node';
             config.node = {
-                fs: 'empty'
+                fs: 'empty',
+                //__dirname: true
             }
         }
     },
     generate: {
+        // mode: 'spa',
+        // fallback: true,
         routes: () => {
-            const context = requireContext('../../content/post', false, /\.json$/)
-            return context.keys().map(key => ({
-                payload: {
-                    ...context(key),
-                    slug: `${key.replace('.json', '').replace('./', '')}`
-                },
-                route: `${key.replace('.json', '').replace('./', '')}`
+            // const context = requireContext('../../content/post', false, /\.json$/)
+            // let posts = context.keys().map(key => ({
+            //     payload: {
+            //         ...context(key),
+            //         slug: `${key.replace('.json', '').replace('./', '')}`
+            //     },
+            //     route: `${key.replace('.json', '').replace('./', '')}`
+            // }));
+            // console.log('cats');
+            // console.log('------');
+            let categories = getDataBy('rel', path.join(__dirname, 'content', 'post'));
+            // console.log(categories);
+            categories = categories.map(category => ({
+                payload: category,
+                route: `/work/${category.key}`
             }));
+            return categories;
         }
     }
 }

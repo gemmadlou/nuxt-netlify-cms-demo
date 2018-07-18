@@ -20,7 +20,7 @@ export const actions = {
         try {
             let category = await import(`../content/category/${params.category}.json`);
             let post = await import(`../content/post/${params.post}.json`);
-            
+
             if (category.title === post.rel) {
                 commit('setCategorizedPost', {...post});
             }
