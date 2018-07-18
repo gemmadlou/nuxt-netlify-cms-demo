@@ -3,6 +3,7 @@ const fs = require('fs');
 const process = require('process');
 
 const OBJ_FIELD = process.env.FIELDNAME || 'rel';
+const OUTPUT_FILE = process.env.OUTPUT || 'categorized-posts.json';
 
 const categoriesFolder = path.join(__dirname, '..', 'content', 'post');
 const contentFolder = path.join(__dirname, '..', 'content');
@@ -45,9 +46,8 @@ const getFile = (filepath) => {
         });
     });
 }
-    
 
-const processData = async (fieldName) => {
+const processData = async (fieldName, outputFile) => {
     try {
         const files = await getCategorizedPosts()
             .then(files => files.map(file => `${categoriesFolder}/${file}`))
@@ -64,7 +64,7 @@ const processData = async (fieldName) => {
             return accum;
         }, {});
 
-        fs.writeFileSync(`${contentFolder}/categorized-posts.json`, JSON.stringify(categorizedPosts))
+        fs.writeFileSync(`${contentFolder}/${outputFile}`, JSON.stringify(categorizedPosts))
 
         console.log(categorizedPosts);
     } catch (e) {
@@ -72,4 +72,4 @@ const processData = async (fieldName) => {
     }
 }
 
-processData(OBJ_FIELD);
+processData(OBJ_FIELD, OUTPUT_FILE);

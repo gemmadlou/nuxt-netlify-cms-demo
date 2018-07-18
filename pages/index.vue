@@ -7,6 +7,13 @@
                 {{ post.rel}}
             </li>
         </ul>
+        <h2>Categories</h2>
+        <ul>
+            <li v-if="categories" v-for="(category, index) in categories" :key="index">
+                <nuxt-link :to="category.slug">{{ category.title }}</nuxt-link>
+                {{ category.title }}
+            </li>
+        </ul>
     </div>
 </template>
 
@@ -15,10 +22,14 @@ export default {
     computed: {
         posts() {
             return this.$store.state.posts.posts
+        },
+        categories() {
+            return this.$store.state.categories.categories;
         }
     },
     async fetch({ store, params }) {
         await store.dispatch('posts/getPosts', params.slug)
+        await store.dispatch('categories/getCategories');
     }
 }
 </script>
